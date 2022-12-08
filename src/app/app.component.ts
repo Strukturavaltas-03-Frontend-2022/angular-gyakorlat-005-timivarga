@@ -10,6 +10,20 @@ import { UserService } from './service/user.service';
 export class AppComponent {
   title = 'The good Angular programmer';
 
-  constructor() {}
+  users: User[] = this.userService.list;
+  currentUser: User = new User();
 
+  constructor(private userService: UserService) { }
+
+  userSelect(user: User): void {
+    this.currentUser = user;
+  }
+
+  userUpdate(user: User): void {
+    this.userService.updateUser(user);
+  }
+
+  userRemove(user: User): void {
+    this.userService.removeUser(user);
+  }
 }
